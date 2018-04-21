@@ -13,7 +13,7 @@ module TictacToe
 
       it 'should be available to place markers' do
         spot = Spot.new('1')
-        expect(spot.available?).to be_true
+        expect(spot.available?).to be true
       end
     end
 
@@ -21,7 +21,7 @@ module TictacToe
       it 'gets placed if spot is available' do
         spot = Spot.new('1')
         spot.place_marker!('x')
-        expect(spot.available).to be_false
+        expect(spot.available?).to be false
       end
     end
   end
