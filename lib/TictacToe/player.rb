@@ -1,10 +1,9 @@
 module TictacToe
   class Player
-    attr_accessor :name, :marker
+    attr_accessor :name
 
-    def initialize(attrs)
-      @name   = attrs[:name]
-      @marker = attrs[:marker]
+    def initialize(name)
+      @name = name
     end
   end
 end
