@@ -1,6 +1,7 @@
 module TictacToe
   class Spot
     attr_accessor :value
+    attr_reader :index
 
     def initialize(index)
       @value = nil
