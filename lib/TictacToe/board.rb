@@ -1,7 +1,9 @@
 module TictacToe
   class Board
+    attr_reader :spots
+
     def initialize
-      @board = initialize_spots
+      @spots = initialize_spots
     end
 
     def render
@@ -13,11 +15,15 @@ module TictacToe
     end
 
     def available_spots
-      @board.map { |spot| spot if spot.available?}
+      spots.map { |s| s if s.available? }
+    end
+
+    def spot(index)
+      spots[index]
     end
 
     def spot_value(index)
-      @board[index].value
+      spot(index).value
     end
 
     private
