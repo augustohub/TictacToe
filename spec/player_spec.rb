@@ -12,5 +12,12 @@ module TictacToe
         expect { Player.new }.to raise_error(ArgumentError)
       end
     end
+
+    context 'who am I?' do
+      it 'is a Human!' do
+        player = Player.new('A Guy')
+        expect(player.bot?).to be_falsey
+      end
+    end
   end
 end

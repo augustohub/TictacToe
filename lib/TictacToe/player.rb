@@ -5,5 +5,9 @@ module TictacToe
     def initialize(name)
       @name = name
     end
+
+    def bot?
+      is_a?(Bot)
+    end
   end
 end

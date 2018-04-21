@@ -18,5 +18,12 @@ module TictacToe
         expect(genius_names).to include(bot.name)
       end
     end
+
+    context 'who am I?' do
+      it 'is a Robot!' do
+        bot = Bot.new(1)
+        expect(bot.bot?).to be_truthy
+      end
+    end
   end
 end
