@@ -3,12 +3,12 @@ module TictacToe
     attr_accessor :value
 
     def initialize(index)
-      @value = index
+      @value = nil
       @index = index
     end
 
     def available?
-      @value == @index
+      @value.nil?
     end
 
     def place_marker!(marker)
