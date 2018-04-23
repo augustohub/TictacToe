@@ -2,19 +2,25 @@ require 'spec_helper'
 
 module TictacToe
   RSpec.describe Board do
+    let (:board) { Board.new }
+
     context '#initialize' do
       it 'creates a board with empty spots' do
-        board = Board.new
         expect(board.spots.size).to eql(9)
         expect(board.available_spots.size).to eql(9)
       end
     end
 
-    context 'gets the marker of an spot' do
-      it 'returns the marker based on his index' do
-        board = Board.new
-        board.spot(3).value = "X"
-        expect(board.spot_value(3)).to eql("X")
+    context "place marker" do
+      it 'place marker if spot is available' do
+        board.place_marker!(1, 'X')
+        expect(board.get_spot(1)).to eql('X')
+      end
+
+      it 'don\'t place marker if spot is unavailable' do
+        board.place_marker!(1, 'X')
+
+        expect(board.place_marker!(1, 'O')).to be false
       end
     end
   end

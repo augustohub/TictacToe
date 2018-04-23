@@ -4,12 +4,12 @@ module TictacToe
     attr_reader :index
 
     def initialize(index)
-      @value = nil
+      @value = index
       @index = index
     end
 
     def available?
-      @value.nil?
+      @value == @index
     end
 
     def place_marker!(marker)

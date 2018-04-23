@@ -1,0 +1,47 @@
+Menu:
+  Player Name: 'Player %{marker} name:'
+  Restart Game: 'Do you want to play again? (1 - Yes | 2 - No)'
+
+In Game:
+  Move Request:
+    - "%{player}, your turn:"
+    - "%{player}, make your move:"
+    - "C'mon %{player}, place your marker:"
+    - "%{player}, JUST DO IT:"
+
+  Invalid Move:
+    - "I'm sorry but I'm afraid you can't do that! Try Again..."
+    - "That's an Invalid move! Try Again..."
+    - "You have to choose an available spot..."
+
+  Winner Message:
+    - "%{player} is the winner!"
+    - "Congratulations %{player}! WINNER WINNER CHICKEN DINNER!"
+    - "%{player} won the game!"
+    - "%{player} is the champion, my friend!"
+
+  Draw Message:
+    - "Well... that's a draw!"
+    - "We got a tie here!"
+
+Bot Names:
+  Genius:
+    - 'Rick Sanchez'
+    - 'Batman'
+    - 'Tony Stark'
+    - 'Lisa Simpson'
+    - 'Stewie Griffin'
+  Average:
+    - 'Eric Cartman'
+    - 'Bart Simpson'
+    - 'Mickey Mouse'
+    - 'Wall-E'
+    - 'Deadpool'
+    - 'Bender'
+  Dumb:
+    - 'Spongebob'
+    - 'Patrick Star'
+    - 'Peter Griffin'
+    - 'Homer Simpson'
+    - 'Morty Smith'
+    - 'Dory'
