@@ -1,39 +1,72 @@
+require 'yaml'
+
 module TictacToe
   class Bot < Player
-    def initialize(skill)
-      @skill = skill
-      @name  = set_name(@skill)
+    attr_accessor :skill, :marker, :name
+
+    def initialize(skill, marker)
+      @skill  = skill
+      @name   = set_name(skill)
+      @marker = marker
     end
 
-    def move
-      sleep(2.seconds)
-      # make a move
+    def move(board, enemy_marker)
+      sleep 2
+      aux_board = board.dup
+
+
+      #board.place_marker!(6)
+      random_move(board)
     end
 
-    def random_move
-      # insert mark on random available spot
+    #private
+
+    def random_move(board)
+      spot = board.available_spots.sample
+      place_marker!(board, spot, @marker)
     end
 
-    def best_move
-      # insert mark on a potential best spot
+    def get_best_move(board)
+      board.available_spots.each do |as|
+        board.spot(as).value = marker
+      end
     end
 
-    private
+    def first_player?(board)
+      board.is_empty?
+    end
+
+    def first_move(board)
+      if genius?
+        if first_player? || board.corners_are_empty?
+          place_marker_on_a_corner
+        else
+          place_marker_on_center
+        end
+      else
+        random_move(board.available_spots)
+      end
+    end
+
+    def place_marker_on_a_corner
+      board.place_marker!(Board::CORNERS.sample, @marker)
+    end
+
+    def place_marker_on_center
+      board.place_marker!(4, @marker)
+    end
 
     SKILLS = {3 => 'Dumb', 2 => 'Average', 1 => 'Genius'}.freeze
 
-    GENIUS_CHARS  = ["Rick Sanchez", "Batman", "Tony Stark",
-                     "Lisa Simpson", "Stewie Griffin"].freeze
-
-    AVERAGE_CHARS = ["Eric Cartman", "Bart Simpson", "Mickey Mouse",
-                     "Wall-E", "Deadpool", "Bender"].freeze
-
-    DUMB_CHARS    = ["Spongebob", "Patrick Star", "Peter Griffin",
-                     "Homer Simpson", "Morty Smith", "Dory"].freeze
-
-    # Showing Off some metaprogramming
     def set_name(skill_level)
-      self.class.const_get("#{SKILLS[skill_level].upcase}_CHARS").shuffle.first
+      bot_names = YAML.load_file('./lib/strings.yml')
+      bot_names['Bot Names'][SKILLS[skill_level]].sample
+    end
+
+    SKILLS.each do |skill, skill_name|
+      define_method("#{skill_name.downcase}?") do
+        @skill == skill
+      end
     end
   end
 end
