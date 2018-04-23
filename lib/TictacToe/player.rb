@@ -13,10 +13,7 @@ module TictacToe
     end
 
     def place_marker!(board, spot, marker)
-      return false unless board.spot_is_available?(spot)
-      board.spots[spot.to_i] = marker
-
-      true
+      board.spots[spot.to_i] = marker if board.spot_is_available?(spot)
     end
   end
 end
