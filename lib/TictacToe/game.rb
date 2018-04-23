@@ -19,25 +19,12 @@ module TictacToe
         request_move
         refresh_screen
       end
+      display_winner if @board.has_winner?
+      @view.draw_phrase if @board.tie?
     end
 
     def game_is_over
-      return true if has_winner? || tie?
-      false
-    end
-
-    def has_winner?
-      return false if WINNING_CASES.none? do |indexes|
-        indexes.map { |i| @board.get_spot(i) }.uniq.length == 1
-      end
-      display_winner
-      true
-    end
-
-    def tie?
-      return false if @board.available_spots.any?
-      @view.draw_phrase
-      true
+      board.game_over?
     end
 
     private
@@ -81,16 +68,5 @@ module TictacToe
     def refresh_screen
       @view.refresh_game_screen(@board.spots)
     end
-
-    WINNING_CASES = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ].freeze
   end
 end
